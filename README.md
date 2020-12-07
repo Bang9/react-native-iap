@@ -117,6 +117,7 @@ _*deprecated_<br>~~`buySubscription(sku: string)`~~<ul><li>sku: subscription ID/
 `clearProductsIOS()`    | `void`            | **iOS only**<br>Clear all products and subscriptions.<br>Read more in below README.
 `requestReceiptIOS()`   | `Promise<string>` | **iOS only**<br>Get the current receipt.
 `validateReceiptIos(body: Object, devMode: boolean)`<ul><li>body: receiptBody</li><li>devMode: isTest</li></ul> | `Object\|boolean` | **iOS only**<br>Validate receipt.
+`presentCodeRedemptionSheetIOS()` | `Promise<null>` | **iOS only**<br>Availability: `iOS 14.0+`<br>Displays a sheet that enables users to redeem subscription offer codes that you generated in App Store Connect.
 `endConnectionAndroid()`   | `Promise<void>` | **Android only**<br>End billing connection.
 `consumeAllItemsAndroid()` | `Promise<void>` | **Android only**<br>Consume all items so they are able to buy again.
 `consumePurchaseAndroid(token: string, payload?: string)`<ul><li>token: purchase token</li><li>payload: developerPayload</li></ul>     | `void` | **iOS only**<br>Finish a purchase. All purchases should be finished once you have delivered the purchased items. E.g. by recording the purchase in your database or on your server.
