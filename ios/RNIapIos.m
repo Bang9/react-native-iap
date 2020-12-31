@@ -338,11 +338,23 @@ RCT_EXPORT_METHOD(getPendingTransactions:(RCTPromiseResolveBlock)resolve
 
 RCT_EXPORT_METHOD(presentCodeRedemptionSheet:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
+#ifdef __IPHONE_14_0
     if (@available(iOS 14.0, *)) {
         [[SKPaymentQueue defaultQueue] presentCodeRedemptionSheet];
         resolve(nil);
     } else {
         reject([self standardErrorCode:2], @"This method only available above iOS 14", nil);
+    }
+#else
+    reject([self standardErrorCode:2], @"This method only available above iOS 14", nil);
+#endif
+}
+
+- (void)presentCodeRedemptionSheet API_AVAILABLE(ios(14.0)) API_UNAVAILABLE(tvos, macos, watchos) {
+    if (@available(iOS 14.0, *)) {
+        [self.paymentQueue presentCodeRedemptionSheet];
+    } else {
+        RCLog(@"Attempted to present code redemption sheet, but it's not available on this device.");
     }
 }
 
